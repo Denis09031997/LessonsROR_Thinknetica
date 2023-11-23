@@ -134,3 +134,61 @@ class Samurai
     @shogun = shogun
   end
 end
+
+=begin
+Расширение знаний
+Если ключевое слово include подмешивает методы модуля на уровне экземпляров (позволяя экземплярам конкретного класса
+использовать эти методы), то ключевое слово extend подмешивает методы модуля на уровне класса. Это означает, 
+что сам класс может использовать методы, а не его экземпляры.
+
+=end
+
+module ThePresent
+  def now
+    puts "It's #{Time.new.hour > 12 ? Time.new.hour - 12 : Time.new.hour}:#{Time.new.min} #{Time.new.hour > 12 ? 'PM' : 'AM'} (GMT)."
+  end
+end
+
+class TheHereAnd
+  extend ThePresent
+end
+
+TheHereAnd.now
+
+puts '-' * 120
+
+# Попрактикуемся с публичными методами
+
+class Application
+  attr_accessor :status
+  def initialize; end
+  # Add your method here!
+  public
+
+  def print_status
+    puts "All systems go!"
+  end
+
+  private
+
+  def password
+    return 12345
+  end
+end
+
+puts 'теперь модули:'
+
+module Languages
+  FAVE = 'Ruby!'
+end
+
+class Master
+  include Languages
+  def initialize; end
+  def victory
+    puts FAVE
+  end
+end
+
+total = Master.new
+total.victory
