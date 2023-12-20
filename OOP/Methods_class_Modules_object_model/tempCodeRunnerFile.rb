@@ -1,1 +1,1 @@
-class_instance_variable
+dog_names
